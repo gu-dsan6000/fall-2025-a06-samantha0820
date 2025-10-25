@@ -47,6 +47,7 @@ ssh_to_master_node.sh
 
 # Data files (raw data downloaded and processed)
 data/raw/
+data/sample/
 *.gz
 *.tar.gz
 
