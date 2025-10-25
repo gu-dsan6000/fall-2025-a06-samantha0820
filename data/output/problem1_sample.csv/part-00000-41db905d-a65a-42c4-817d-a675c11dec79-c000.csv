@@ -1,0 +1,11 @@
+log_entry,log_level
+17/06/08 19:01:37 INFO executor.CoarseGrainedExecutorBackend: Got assigned task 8075,INFO
+17/06/09 13:32:12 INFO executor.Executor: Finished task 35.0 in stage 16070.0 (TID 643274). 2651 bytes result sent to driver,INFO
+17/06/10 15:07:17 INFO mapred.SparkHadoopMapRedUtil: attempt_201706101500_0063_m_000009_1268: Committed,INFO
+17/06/09 09:51:48 INFO mapred.SparkHadoopMapRedUtil: attempt_201706090945_0605_m_000011_24295: Committed,INFO
+17/06/09 17:15:15 INFO executor.CoarseGrainedExecutorBackend: Got assigned task 93107,INFO
+17/06/09 11:54:26 INFO storage.BlockManager: Found block rdd_7548_11 locally,INFO
+17/06/08 21:46:09 INFO executor.Executor: Finished task 29.0 in stage 18026.0 (TID 721105). 2156 bytes result sent to driver,INFO
+17/06/09 12:18:37 INFO executor.Executor: Running task 21.0 in stage 7440.0 (TID 298055),INFO
+17/06/08 15:47:48 INFO executor.Executor: Running task 12.0 in stage 112.0 (TID 4737),INFO
+"17/06/08 10:39:36 INFO python.PythonRunner: Times: total = 38, boot = -527, init = 565, finish = 0",INFO
