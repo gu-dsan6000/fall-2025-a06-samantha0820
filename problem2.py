@@ -15,20 +15,28 @@ parser.add_argument("--skip-spark", action="store_true")
 args = parser.parse_args()
 
 # Define input and output directories
-base_dir = "data/raw" if "spark://" in args.mode else "data/sample"
+if "spark://" in args.mode:
+    base_dir = "s3a://sw1451-spark-cluster-logs/data/"
+else:
+    base_dir = "data/sample"
 out_dir = "data/output"
 os.makedirs(out_dir, exist_ok=True)
 
 # Initialize Spark session only when needed
 if not args.skip_spark:
     spark = (
-        SparkSession.builder
-        .appName("Problem2_ClusterUsage")
-        .config("spark.driver.memory", "8g")
-        .config("spark.executor.memory", "4g")
-        .getOrCreate()
+    SparkSession.builder
+    .appName("Problem2_ClusterUsage")
+    .config("spark.driver.memory", "8g")
+    .config("spark.executor.memory", "4g")
+    .config("spark.hadoop.fs.s3a.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem")
+    .config("spark.hadoop.fs.s3a.aws.credentials.provider", 
+            "org.apache.hadoop.fs.s3a.auth.IAMInstanceCredentialsProvider")
+    .config("spark.hadoop.fs.s3a.endpoint", "s3.amazonaws.com")
+    .getOrCreate()
     )
-    df = spark.read.text(base_dir)
+    print(f"Reading logs from: {base_dir}")
+    df = spark.read.text(base_dir + "*/*")
     df.limit(50).show(truncate=False)  # sanity check to confirm reading works
     spark.stop()
 
